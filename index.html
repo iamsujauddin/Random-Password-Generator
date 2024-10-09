@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Random Password generator using JavaScript</title>
+  </head>
+
+  <body style="text-align: center">
+    <div style="padding-top: 110px">
+      <span style="color: green; padding-right: 50px; font-size: large"
+        >Password Genarator :
+      </span>
+
+      <span style="padding-right: 15px" id="password"></span>
+      <button onclick="gfg_Run()">Click Here</button>
+    </div>
+    <script>
+      var el_down = document.getElementById("password");
+
+      /* Function to generate combination of password */
+
+      function* generateSequence(start, end) {
+        for (let i = start; i <= end; i++) yield i;
+      }
+
+      function* generateAlphaNum() {
+        // yield* generateSequence(48, 57);
+        for (let i = 48; i <= 57; i++) yield i;
+
+        // yield* generateSequence(65, 90);
+        for (let i = 65; i <= 90; i++) yield i;
+
+        // yield* generateSequence(97, 122);
+        for (let i = 97; i <= 122; i++) yield i;
+      }
+
+      let str = "";
+
+      for (let code of generateAlphaNum()) {
+        str += String.fromCharCode(code);
+      }
+
+      str += "!@#$%^&*?";
+      function generateP() {
+        var pass = "";
+        for (i = 1; i <= 8; i++) {
+          var char = Math.floor(Math.random() * str.length + 1);
+
+          pass += str.charAt(char);
+        }
+
+        return pass;
+      }
+
+      function gfg_Run() {
+        el_down.innerHTML = generateP();
+      }
+    </script>
+  </body>
+</html>
